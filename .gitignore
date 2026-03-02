@@ -1,0 +1,31 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Ignore node modules
+node_modules/
+
+# Ignore build folder
+build/
+
+# OS / system files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+=======
+=======
+>>>>>>> c092f4b (✨ Major UI redesign: elegant dark theme, Tailwind, animations)
+# node
+node_modules/
+.env
+
+# build
+dist/
+build/
+
+# system
+.DS_Store
+<<<<<<< HEAD
+>>>>>>> c092f4b (✨ Major UI redesign: elegant dark theme, Tailwind, animations)
+=======
+>>>>>>> c092f4b (✨ Major UI redesign: elegant dark theme, Tailwind, animations)
