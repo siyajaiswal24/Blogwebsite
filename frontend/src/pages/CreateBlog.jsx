@@ -1,4 +1,3 @@
-
 import { useState, useRef } from "react";
 
 export default function CreateBlog() {
@@ -36,26 +35,44 @@ export default function CreateBlog() {
       if (!res.ok) throw new Error("Failed");
       alert("Published ✨");
       formRef.current.reset();
+      setError("");
     } catch (err) {
       console.error(err);
       setError("Could not publish blog");
     }
   };
 
-  const deleteDraft = () => {
-    formRef.current.reset();
-    setShowDeleteConfirm(false);
-  };
-
   return (
-    <div className="min-h-screen bg-luxBg dark:bg-darkBg transition-colors flex justify-center px-6 pt-28 pb-32 animate-fadeIn">
-      <form ref={formRef} onSubmit={submit} className="w-full max-w-3xl bg-luxSurface dark:bg-darkSurface border border-luxBorder dark:border-darkBorder rounded-2xl p-10 space-y-10 shadow-xl shadow-black/20 dark:shadow-luxAccent/10 transition-colors">
-        <input name="title" placeholder="Your title" className="w-full text-5xl font-bold bg-transparent outline-none text-luxHeading dark:text-darkHeading placeholder:text-luxMuted dark:placeholder:text-darkMuted transition-colors" />
-        <input name="image" placeholder="Cover image URL" className="w-full border-b border-luxBorder dark:border-darkBorder pb-3 bg-transparent outline-none text-luxText dark:text-darkText placeholder:text-luxMuted dark:placeholder:text-darkMuted transition-colors" />
-        <textarea name="description" placeholder="Start writing..." className="w-full min-h-[360px] text-lg leading-relaxed bg-transparent outline-none resize-none text-luxText dark:text-darkText placeholder:text-luxMuted dark:placeholder:text-darkMuted transition-colors" />
+    <div className="min-h-screen bg-luxBg dark:bg-darkBg flex justify-center px-6 pt-28 pb-32">
+      <form ref={formRef} onSubmit={submit} className="w-full max-w-3xl bg-luxSurface dark:bg-darkSurface border rounded-2xl p-10 space-y-6 shadow-xl">
+
+        {/* ✅ SHOW ERROR */}
+        {error && (
+          <p className="text-red-500 text-sm">{error}</p>
+        )}
+
+        <input name="title" placeholder="Your title" className="w-full text-5xl font-bold bg-transparent outline-none" />
+
+        <input name="image" placeholder="Cover image URL" className="w-full border-b pb-3 bg-transparent outline-none" />
+
+        <textarea name="description" placeholder="Start writing..." className="w-full min-h-[360px] text-lg bg-transparent outline-none resize-none" />
+
         <div className="pt-6 flex gap-4">
-          <button type="submit" className="px-8 py-3 bg-luxAccent text-white font-medium rounded-full hover:opacity-90 transition shadow-lg shadow-emerald-500/20">Publish</button>
-          <button type="button" onClick={() => setShowDeleteConfirm(true)} className="px-6 py-3 border border-luxBorder dark:border-darkBorder text-luxMuted dark:text-darkMuted rounded-full hover:text-red-400 dark:hover:text-red-400 hover:border-red-400 dark:hover:border-red-400 transition">Delete draft</button>
+          <button type="submit" className="px-8 py-3 bg-luxAccent text-white rounded-full">
+            Publish
+          </button>
+
+          {/* ✅ Now variable is USED */}
+          <button
+            type="button"
+            onClick={() => {
+              formRef.current.reset();
+              setShowDeleteConfirm(false);
+            }}
+            className="px-6 py-3 border rounded-full hover:text-red-400"
+          >
+            Delete draft
+          </button>
         </div>
       </form>
     </div>
